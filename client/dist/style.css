@@ -1,0 +1,120 @@
+body {
+  font-family: Helvetica;
+  margin-left: 1.5%;
+  font-size: 20px;
+}
+
+a {
+  text-decoration: none;
+  color: #01A9DB;
+}
+
+#searchInput {
+  margin-top: 0.75%;
+  appearance: none;
+  border: 3px solid #01A9DB;
+  border-top-right-radius: 7.5px;
+  border-top-left-radius: 7.5px;
+  border-bottom-right-radius: 7.5px;
+  padding-left: 0.4%;
+  padding-bottom: 0.2%;
+}
+
+#searchButton {
+  margin-top: 0.75%;
+  appearance: none;
+  border: 1.5px solid #2E2E2E;
+  background-color: #2E2E2E;
+  color: white;
+  border-top-right-radius: 7.5px;
+  border-bottom-left-radius: 7.5px;
+  border-bottom-right-radius: 7.5px;
+  vertical-align: middle;
+  padding-bottom: 0.175%;
+}
+
+.errorCheck {
+  margin-top: 3%;
+  color: #F74242;
+}
+.repoList {
+  margin-top: 3%;
+}
+
+.repoLabels {
+  color:#646464;
+}
+
+.githubHeader, .fetchbertHeader {
+  display: inline-block;
+}
+
+@media screen and (max-width: 3000px) and (min-width: 1200px) {
+  #searchInput {
+    width: 25%;
+    height: 20px;
+    margin-top: 0.75%;
+    padding-left: 0.5%;
+    padding-bottom: 0.2%;
+    font-size: 15px;
+  }
+  
+  #searchButton {
+    margin-top: 0.75%;
+    width: 7%;
+    height: 30px;
+    appearance: none;
+    font-size: 15px;
+    vertical-align: middle;
+    padding-bottom: 0.175%;
+  }
+
+  .fetchbertHeader {
+    font-size: 28px;
+  }
+
+  .repoListBody {
+    display: grid;
+    grid-area: content;
+    grid-template-columns: 0.3fr 0.3fr 0.3fr 0.3fr;
+    grid-template-areas: "content content content content";
+  }
+}
+@media screen and (max-width: 1024px) and (min-width: 300px) {
+  #searchInput {
+    width: 30%;
+    height: 30px;
+    margin-top: 1.5%;
+    padding-left: 0.5%;
+    padding-bottom: 0.2%;
+    font-size: 15px;
+  }
+  
+  #searchButton {
+    margin-top: 1.2%;
+    width: 15%;
+    height: 43px;
+    font-size: 20px;
+    vertical-align: middle;
+    padding-bottom: 0.175%;
+  }
+
+  .githubHeader {
+    font-size: 40px;
+  }
+
+  .fetchbertHeader {
+    font-size: 32.5px;
+  }
+
+  .repoList {
+    margin-top: 5%;
+  }
+
+  .repoListBody {
+    display: grid;
+    grid-area: content;
+    grid-template-columns: 0.4fr 0.4fr;
+    grid-template-areas: "content content";
+  }
+}
