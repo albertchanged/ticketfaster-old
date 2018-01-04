@@ -2,6 +2,7 @@ const request = require('request');
 const config = require('../config.js');
 
 let getEventsByGenre = (genre, city, callback) => {
+  console.log(genre, city);
   let options = {
     url: `https://app.ticketmaster.com/discovery/v2/events.json?classificationName=${genre}&city=${city}&apikey=${config.KEY}`,
     method: 'GET',

@@ -8,7 +8,8 @@ class Search extends React.Component {
     this.state = {
       locations: [{'id': 1, 'name': 'San Francisco, CA'}, {'id': 2, 'name': 'Los Angeles, CA'}],
       genre: '',
-      city: ''
+      city: '',
+      selected: ''
     }
   }
   componentDidMount() {
@@ -41,6 +42,14 @@ class Search extends React.Component {
       }
     });
   }
+  handleChange(event) {
+    // console.log(this.state.selected);
+    event.preventDefault();
+    this.setState({
+      selected: event.target.value.toLowerCase().replace(/\s/g, '')
+    });
+    // console.log(this.state.selected);
+  }
   handleSubmit(event) {
     event.preventDefault();
     this.props.onClick(this.state.genre, this.state.city);
@@ -48,10 +57,11 @@ class Search extends React.Component {
   sendData() {
     this.setState({
       genre: document.getElementById('genreInput').value,
-      city: document.getElementById('cityInput').value
+      city: this.state.selected
     });
   }
   render() {
+    console.log('State is: '+ this.state.selected);
     return (
       <div>
         <form onSubmit={this.handleSubmit.bind(this)}>
@@ -59,14 +69,16 @@ class Search extends React.Component {
             <h3>Specify a genre!</h3>
             <input id="genreInput" type="text" />
             <h3>Specify a city!</h3>
-            <select id="cityDropdown">
+            <select 
+              id="cityDropdown" 
+              value={this.state.selected}
+              onChange={this.handleChange.bind(this)}>
               {
                 this.state.locations.map((location) => (
-                  (<option key={location.id} value={location.city + ', ' + location.state}>{location.city + ', ' + location.state}</option>)
+                  (<option key={location.id} value={location.city}>{location.city + ', ' + location.state}</option>)
                 ))
               }
             </select>
-            <input id="cityInput" type="text" />
             <button onClick={this.sendData.bind(this)}>Search!</button>
           </div>
         </form>
