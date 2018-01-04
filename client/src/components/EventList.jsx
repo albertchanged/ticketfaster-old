@@ -1,16 +1,16 @@
 import React from 'react';
-// import Event from './Event.jsx';
+import Event from './Event.jsx';
 
 const EventList = (props) => {
   return (
     <div>
     {
-      // this.props.events.map((event) => (
-      //   <Event 
-      //     event={event}
-          
-      //   />
-      // ))
+      props.events.map((event) => (
+        <Event 
+          event={event}
+          key={event.id}
+        />
+      ))
     }
     </div>
   )

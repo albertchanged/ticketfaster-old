@@ -9,7 +9,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = { 
-      events: []
+      eventList: []
     }
   }
 
@@ -28,7 +28,15 @@ class App extends React.Component {
       data: JSON.stringify({'genre': genre, 'city': city}),
       success: (data) => {
         console.log('POST success: ', data);
+        var events = data._embedded.events;
+        // console.log(venues);
+        // var locationArray = [];
         // this.state.repos.concat(data);
+        console.log('This is events ', events);
+        this.setState({
+          eventList: events
+        });
+        console.log(this.state.eventList);
         // this.getRepos();
       },
       error: (data) => {
@@ -37,7 +45,7 @@ class App extends React.Component {
     });
   }
 
-  getRepos() {
+  getEvents() {
     $.ajax({
       url: '/',
       method: 'GET',
@@ -55,12 +63,13 @@ class App extends React.Component {
   }
 
   render () {
+    console.log('In the render ', this.state.eventList)
     return (<div>
       {/* <img src="../client/dist/githublogo.png" /> */}
       <h1 className="githubHeader"><strong>Ticketfaster</strong></h1>
       {/* <h2 className="fetchbertHeader">&nbsp;/fetchbert</h2> */}
       <Search onClick={this.search.bind(this)}/>
-      <EventList events={this.state.events}/>
+      <EventList events={this.state.eventList}/>
     </div>)
   }
 }

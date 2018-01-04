@@ -1,12 +1,13 @@
 import React from 'react';
 import $ from 'jquery';
+import _ from 'lodash';
 var config = require('.../../../config.js');
 
 class Search extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      locations: [{'id': 1, 'name': 'San Francisco, CA'}, {'id': 2, 'name': 'Los Angeles, CA'}],
+      locations: [{'id': 1, 'city': 'San Francisco', 'state': 'CA'}, {'id': 2, 'city': 'Los Angeles', 'state': 'CA'}],
       genre: '',
       city: '',
       selected: ''
@@ -21,7 +22,7 @@ class Search extends React.Component {
       success: (data) => {
         console.log('GET success: ', data._embedded);
         var venues = data._embedded.venues;
-        console.log(venues);
+        // console.log(venues);
         var locationArray = [];
         venues.forEach((venue) => {
           var locationObj = {
@@ -31,7 +32,10 @@ class Search extends React.Component {
           }
           locationArray.push(locationObj);
         })
-        locationArray = locationArray.sort((a, b) => { return a + b; });
+        locationArray = _.uniqBy(locationArray, 'city');
+        console.log(locationArray);
+        locationArray = locationArray.sort((a, b) => { console.log(a.city + ', ' + b.city); return a.city - b.city; });
+        console.log(locationArray);
         this.setState({
           locations: locationArray
         })
@@ -43,12 +47,10 @@ class Search extends React.Component {
     });
   }
   handleChange(event) {
-    // console.log(this.state.selected);
     event.preventDefault();
     this.setState({
-      selected: event.target.value.toLowerCase().replace(/\s/g, '')
+      selected: event.target.value
     });
-    // console.log(this.state.selected);
   }
   handleSubmit(event) {
     event.preventDefault();
@@ -57,11 +59,10 @@ class Search extends React.Component {
   sendData() {
     this.setState({
       genre: document.getElementById('genreInput').value,
-      city: this.state.selected
+      city: this.state.selected.toLowerCase().replace(/\s/g, '')
     });
   }
   render() {
-    console.log('State is: '+ this.state.selected);
     return (
       <div>
         <form onSubmit={this.handleSubmit.bind(this)}>
