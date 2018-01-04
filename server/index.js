@@ -16,7 +16,9 @@ app.post('/events', function (req, res) {
     if (err) {
       res.sendStatus(404);
     } else {
-      res.status(200).json(data);
+      // if (data.length > 0) {
+        res.status(200).json(data);
+      // }
     }
   });
 });

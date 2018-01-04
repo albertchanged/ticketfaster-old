@@ -33,10 +33,12 @@ class App extends React.Component {
         // var locationArray = [];
         // this.state.repos.concat(data);
         console.log('This is events ', events);
+        console.log(events[0]._embedded.venues[0].name);
         this.setState({
           eventList: events
         });
-        console.log(this.state.eventList);
+        // console.log(this.state.eventList);
+        // console.log(this.state.eventList[0]._embedded.venues.name);
         // this.getRepos();
       },
       error: (data) => {
