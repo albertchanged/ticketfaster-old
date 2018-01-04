@@ -26,10 +26,11 @@ class Search extends React.Component {
           var locationObj = {
             'id': venue.id,
             'city': venue.city.name,
-            'state': venue.country.countryCode
+            'state': venue.state.stateCode
           }
           locationArray.push(locationObj);
         })
+        locationArray = locationArray.sort((a, b) => { return a + b; });
         this.setState({
           locations: locationArray
         })
